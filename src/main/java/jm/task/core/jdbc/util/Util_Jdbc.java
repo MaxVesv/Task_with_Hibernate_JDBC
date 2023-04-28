@@ -8,8 +8,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util_Jdbc {
-    private static final String LOGIN = "Kata_login_114";
-    private static final String PASSW = "Kata_login_114";
+    private static final String LOGIN = "root";
+    private static final String PASSW = "root";
     private static Connection jdbc_connection = null;
 
     private Util_Jdbc() throws TaskJdbcException {
