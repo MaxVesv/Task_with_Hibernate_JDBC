@@ -10,7 +10,7 @@ public class TaskJdbcException extends SQLException {
              * Место для вставки обработки исключения по задаче
              *
              */
-            System.out.println(massage);
+            System.out.println("ERROR DAO " + massage);
         } else {
             StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
             massage = "Для исключения передан неправильный параметр = "
