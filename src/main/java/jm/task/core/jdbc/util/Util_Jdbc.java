@@ -15,6 +15,7 @@ public class Util_Jdbc {
     private Util_Jdbc() throws TaskJdbcException {
         try {
             jdbc_connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/PP_1_1_4_KATA", LOGIN, PASSW);
+            System.out.println("Открываем новое соединение!");
         } catch (SQLException e) {
             throw new TaskJdbcException(e);
         }
@@ -26,7 +27,18 @@ public class Util_Jdbc {
             System.out.println("Создали подключение к MySQL");
 
         } else {
-            throw new TaskJdbcException("Невозможно создать jdbc_connection, так как значение уже присвоено!", true);
+            try {
+                // проверяем открыто ли соединение
+                if(jdbc_connection.isClosed()) {
+                    System.out.println("Соединение закрыто!");
+                    new Util_Jdbc();
+                } else {
+                    System.out.println("Соединение открыто: используем открытое подключение к MySQL");
+                }
+            } catch (SQLException e) {
+                throw new TaskJdbcException(e);
+            }
+            return jdbc_connection;
         }
         return jdbc_connection;
     }
