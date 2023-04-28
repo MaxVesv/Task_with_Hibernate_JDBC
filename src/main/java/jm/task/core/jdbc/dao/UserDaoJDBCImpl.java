@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util_Jdbc;
 
 import java.sql.*;
@@ -9,9 +10,16 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    public UserDaoJDBCImpl() {
+    private static final UserDaoJDBCImpl DAO_INSTANCE_JDBC = new UserDaoJDBCImpl();
+
+    private UserDaoJDBCImpl() {
 
     }
+
+    public static UserDaoJDBCImpl getDaoInstanceJdbc() {
+        return DAO_INSTANCE_JDBC;
+    }
+
 
     public void createUsersTable() throws TaskJdbcException {
         String sqlCreate = """

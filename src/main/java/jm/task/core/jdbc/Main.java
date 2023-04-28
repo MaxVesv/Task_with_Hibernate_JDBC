@@ -10,7 +10,7 @@ import static java.lang.Thread.sleep;
 public class Main {
     public static void main(String[] args) throws SQLException, InterruptedException {
         // реализуйте алгоритм здесь
-        UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+        UserDaoJDBCImpl userDaoJDBC = UserDaoJDBCImpl.getDaoInstanceJdbc();
 
        /**  Создание таблицы User(ов) */
         userDaoJDBC.createUsersTable();
