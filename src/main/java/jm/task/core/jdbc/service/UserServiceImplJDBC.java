@@ -7,7 +7,7 @@ import jm.task.core.jdbc.model.User;
 
 import java.util.List;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImplJDBC implements UserService {
     public void createUsersTable() throws TaskJdbcException {
         UserDao service = UserDaoJDBCImpl.getDaoInstanceJdbc();
         service.createUsersTable();
