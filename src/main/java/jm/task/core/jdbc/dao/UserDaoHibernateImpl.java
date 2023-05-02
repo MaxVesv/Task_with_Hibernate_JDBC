@@ -9,17 +9,6 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
 
-    private static final UserDaoHibernateImpl DAO_INSTANCE_HIBERNATE = new UserDaoHibernateImpl();
-
-    private UserDaoHibernateImpl() {
-
-    }
-
-    public static UserDaoHibernateImpl getDaoInstanceHubernate() {
-        return DAO_INSTANCE_HIBERNATE;
-    }
-
-
     @Override
     public void createUsersTable() throws TaskJdbcException {
         String sqlCreate = """

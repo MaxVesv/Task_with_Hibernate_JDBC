@@ -4,6 +4,8 @@ import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserServiceImplHibernate;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class Main {
          *  ********************************************************************************************
          */
 
-        UserDao connect = UserDaoHibernateImpl.getDaoInstanceHubernate();
+        UserServiceImplHibernate connect = new UserServiceImplHibernate();
 
         /**  Создание таблицы User(ов) */
         connect.createUsersTable();
@@ -65,14 +67,14 @@ public class Main {
         System.out.println("ВЫВОД ВЫВОД ПОЛУЧЕННЫХ ДАННЫХ!");
         list.stream().forEach (a -> System.out.println(a.toString()));
 //
-        //удаление по id
-//        connect.removeUserById(4);
-//
-//        /**  Очистка таблицы User(ов) */
-//        connect.cleanUsersTable();
-//
-//        /**  Удаление таблицы */
-//        connect.dropUsersTable();
+//        удаление по id
+        connect.removeUserById(4);
+
+        /**  Очистка таблицы User(ов) */
+        connect.cleanUsersTable();
+
+        /**  Удаление таблицы */
+        connect.dropUsersTable();
 
     }
 }
