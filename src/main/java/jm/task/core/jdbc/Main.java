@@ -5,6 +5,7 @@ import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserServiceImplHibernate;
+import jm.task.core.jdbc.service.UserServiceImplJDBC;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,31 +19,31 @@ public class Main {
          *  ПРИМЕР РЕАЛИЗАЦИИ С JDBC********************************************************************
          *  ********************************************************************************************
          */
-        UserDaoJDBCImpl userDaoJDBC = UserDaoJDBCImpl.getDaoInstanceJdbc();
+        UserServiceImplJDBC connectJDBC = new UserServiceImplJDBC();
 
        /**  Создание таблицы User(ов) */
-        userDaoJDBC.createUsersTable();
+        connectJDBC.createUsersTable();
 //
        /**  Добавление 4 User(ов) в таблицу с данными на свой выбор. После каждого добавления
        *  должен быть вывод в консоль ( User с именем – name добавлен в базу данных */
-       userDaoJDBC.saveUser("Ivan", "Petrov", (byte)13);
-       userDaoJDBC.saveUser("Sergey", "Suvorov", (byte)16);
-       userDaoJDBC.saveUser("Maxim", "Ivanov", (byte)45);
-       userDaoJDBC.saveUser("Petr", "Sidorov", (byte)73);
+        connectJDBC.saveUser("Ivan", "Petrov", (byte)13);
+        connectJDBC.saveUser("Sergey", "Suvorov", (byte)16);
+        connectJDBC.saveUser("Maxim", "Ivanov", (byte)45);
+        connectJDBC.saveUser("Petr", "Sidorov", (byte)73);
 
        /**  Получение всех User из базы и вывод в консоль ( должен быть переопределен toString в классе User) */
-       List<User> list = userDaoJDBC.getAllUsers();
+       List<User> list = connectJDBC.getAllUsers();
        System.out.println("ВЫВОД после получения данных!");
        list.stream().forEach (a -> System.out.println(a.toString()));
 
        //удаление по id
-       userDaoJDBC.removeUserById(1);
+        connectJDBC.removeUserById(1);
 
        /**  Очистка таблицы User(ов) */
-       userDaoJDBC.cleanUsersTable();
+        connectJDBC.cleanUsersTable();
 
        /**  Удаление таблицы */
-       userDaoJDBC.dropUsersTable();
+        connectJDBC.dropUsersTable();
 
         /**
          *  ********************************************************************************************
